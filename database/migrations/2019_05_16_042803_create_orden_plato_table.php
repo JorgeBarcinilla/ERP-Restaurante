@@ -32,6 +32,6 @@ class CreateOrdenPlatoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_orden_plato');
+        Schema::dropIfExists('orden_plato');
     }
 }

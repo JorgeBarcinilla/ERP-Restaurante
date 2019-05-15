@@ -32,6 +32,6 @@ class CreatePlatoIngredienteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_plato_ingrediente');
+        Schema::dropIfExists('plato_ingrediente');
     }
 }

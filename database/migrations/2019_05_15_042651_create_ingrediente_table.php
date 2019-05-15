@@ -28,6 +28,6 @@ class CreateIngredienteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_ingrediente');
+        Schema::dropIfExists('ingrediente');
     }
 }

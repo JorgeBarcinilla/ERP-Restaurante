@@ -28,6 +28,6 @@ class CreatePlatoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_plato');
+        Schema::dropIfExists('plato');
     }
 }
