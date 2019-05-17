@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Restaurante - @yield('title')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset("assets/crud/css/bootstrap.min.css")}}">
+    <link rel="stylesheet" href="{{asset("assets/crud/css/estilos.css")}}">
 </head>
 <body>
     <div id="app">
@@ -41,11 +43,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Administrador') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Clientes') }}</a>
                                 </li>
                             @endif
                         @else
@@ -76,5 +78,9 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{asset("assets/crud/js/jquery-3.4.1.js")}}"></script>
+    <script src="{{asset("assets/crud/js/popper.min.js")}}"></script>
+    <script src="{{asset("assets/crud/js/bootstrap.min.js")}}"></script>
+    <script src="{{asset("assets/crud/js/validacion.js")}}"></script>
 </body>
 </html>
