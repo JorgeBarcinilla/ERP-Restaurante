@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset("assets/crud/css/bootstrap.min.css")}}">
-    <link rel="stylesheet" href="{{asset("assets/crud/css/estilos.css")}}">
+    <link rel="stylesheet" href="{{asset("assets/crud/css/estilosmod.css")}}">
 </head>
 <body>
     <div id="app">
@@ -78,9 +78,10 @@
             @yield('content')
         </main>
     </div>
+    
     <script src="{{asset("assets/crud/js/jquery-3.4.1.js")}}"></script>
     <script src="{{asset("assets/crud/js/popper.min.js")}}"></script>
     <script src="{{asset("assets/crud/js/bootstrap.min.js")}}"></script>
-    <script src="{{asset("assets/crud/js/validacion.js")}}"></script>
+    <script src="{{asset("assets/crud/js/validaciones.js")}}"></script>
 </body>
 </html>
