@@ -7,6 +7,17 @@ use App\Ingrediente;
 
 class IngredienteController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -49,9 +60,9 @@ class IngredienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($Codigo)
     {
-        return 'aqui va la edicion de el ingrediente con id'.$id;
+        $ingrediente = Ingrediente::where('Codigo','=',$Codigo)->firstOrFail();
     }
 
     /**
@@ -62,7 +73,7 @@ class IngredienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -72,9 +83,12 @@ class IngredienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Ingrediente $ingrediente)
     {
-        //
+        $ingrediente->fill($request->all());
+        $ingrediente->save();
+        //return $request;
+        return redirect()->route('ingredientes.index')->with('status','Ingrediente actualizado correctamente'); 
     }
 
     /**

@@ -11,6 +11,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{asset("assets/crud/js/jquery-3.4.1.js")}}"></script>
+    <script src="{{asset("assets/crud/js/popper.min.js")}}"></script>
+    <script src="{{asset("assets/crud/js/bootstrap.min.js")}}"></script>
+    <script src="{{ asset('js/validaciones.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,7 +23,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset("assets/crud/css/bootstrap.min.css")}}">
-    <link rel="stylesheet" href="{{asset("assets/crud/css/estilosmod.css")}}">
+    <link rel="stylesheet" href="{{asset("css/estilos.css")}}">
 </head>
 <body>
     <div id="app">
@@ -43,11 +47,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Administrador') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Clientes') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -78,10 +82,5 @@
             @yield('content')
         </main>
     </div>
-    
-    <script src="{{asset("assets/crud/js/jquery-3.4.1.js")}}"></script>
-    <script src="{{asset("assets/crud/js/popper.min.js")}}"></script>
-    <script src="{{asset("assets/crud/js/bootstrap.min.js")}}"></script>
-    <script src="{{asset("assets/crud/js/validaciones.js")}}"></script>
 </body>
 </html>
