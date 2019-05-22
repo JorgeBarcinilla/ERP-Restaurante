@@ -51,7 +51,7 @@ class IngredienteController extends Controller
         $ingrediente->Nombre =$request->input('nombre');
         $ingrediente->Proveedor =$request->input('proveedor');
         $ingrediente->save();
-        return 'guardado';
+        return redirect()->route('ingredientes.index')->with('status','Agregado correctamente');
     }
 
     /**
@@ -62,7 +62,7 @@ class IngredienteController extends Controller
      */
     public function show($Codigo)
     {
-        $ingrediente = Ingrediente::where('Codigo','=',$Codigo)->firstOrFail();
+        //$ingrediente = Ingrediente::where('Codigo','=',$Codigo)->firstOrFail();
     }
 
     /**
@@ -71,9 +71,8 @@ class IngredienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Ingrediente $ingrediente)
     {
-        
     }
 
     /**
@@ -85,7 +84,8 @@ class IngredienteController extends Controller
      */
     public function update(Request $request, Ingrediente $ingrediente)
     {
-        $ingrediente->fill($request->all());
+        $ingrediente->Nombre =$request->input('nombre');
+        $ingrediente->Proveedor =$request->input('proveedor');
         $ingrediente->save();
         //return $request;
         return redirect()->route('ingredientes.index')->with('status','Ingrediente actualizado correctamente'); 
@@ -97,8 +97,9 @@ class IngredienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ingrediente $ingrediente)
     {
-        //
+        $ingrediente->delete();
+        return redirect()->route('ingredientes.index')->with('status','Eliminado correctamente');
     }
 }

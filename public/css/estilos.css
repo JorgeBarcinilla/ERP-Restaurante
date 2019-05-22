@@ -43,6 +43,7 @@
     font-weight: normal;
     position: absolute;
     pointer-events: none;
+    width: 190px;
     left: 5px;
     top: 10px;
     padding-right: 3px;
@@ -51,19 +52,19 @@
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
     background-color: white;
-    width: 340px;
+    display: flex;
 }
 
 .group {
     position: relative;
-    margin-bottom: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .textField {
     font-size: 18px;
-    padding: 10px 10px 10px 5px;
+    padding: 5px 0px 10px 0px;
     display: block;
-    width: 350px;
     border: 1px solid #757575;
     border-radius: 5px;
 }
@@ -91,3 +92,60 @@
     -webkit-transition: 0.5s  ease all;
     
 }
+
+body {
+    overflow-x: hidden;
+  }
+  
+  #sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+  }
+  
+  #sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+  }
+  
+  #sidebar-wrapper .list-group {
+    width: 8rem;
+  }
+  
+  #page-content-wrapper {
+    min-width: 100vw;
+  }
+  
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #wrapper{
+      margin-top:-20px;
+  }
+
+  .btn-menu{
+      background-color: transparent;
+      color: black;
+      border: 1px solid black;
+      outline: none;
+  }
+  
+  @media (min-width: 768px) {
+    #sidebar-wrapper {
+      margin-left: 0;
+    }
+  
+    #page-content-wrapper {
+      min-width: 0;
+      width: 100%;
+    }
+  
+    #wrapper.toggled #sidebar-wrapper {
+      margin-left: -8rem;
+    }
+  }
+  

@@ -15,6 +15,7 @@
     <script src="{{asset("assets/crud/js/popper.min.js")}}"></script>
     <script src="{{asset("assets/crud/js/bootstrap.min.js")}}"></script>
     <script src="{{ asset('js/validaciones.js') }}" defer></script>
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -28,7 +29,10 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            @yield('sidebar')
             <div class="container">
+               
+
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>

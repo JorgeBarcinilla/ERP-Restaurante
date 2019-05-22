@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Plato;
+use App\Ingrediente;
 
 class PlatoController extends Controller
 {
@@ -13,7 +15,9 @@ class PlatoController extends Controller
      */
     public function index()
     {
-        return 'Controlador de platos';
+        $platos = Plato::all();
+        $ingredientes = Ingrediente::all();
+        return view('platos.index',compact('platos','ingredientes'));
     }
 
     /**
@@ -34,7 +38,11 @@ class PlatoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $plato = new Plato();
+        $plato->Nombre =$request->input('nombre');
+        $plato->Valor =$request->input('valor');
+        $plato->save();
+        return redirect()->route('platos.index')->with('status','Plato creado correctamente');
     }
 
     /**

@@ -63,7 +63,7 @@ let backupInput ;
 let inputs;
 
 $('.editar').on('click',function(event){
-    inputs = document.getElementsByClassName('textFieldDisabled id'+$(this).attr('id')[1]);
+    inputs = document.getElementsByClassName('textFieldDisabled id'+$(this).attr('id').substring(1));
     backupInput = new Array(inputs.length);
     if($(this).val()=="Editar"){
         for (var i = 0; i < inputs.length; i++) {
@@ -72,10 +72,14 @@ $('.editar').on('click',function(event){
             inputs[i].focus();
             $(this).removeClass('btn-warning');
             $(this).addClass('btn-success');
+            
         }
-        $(this).val('Guardar');
+        $(this).val('Actualizar');
         $(this).prop('disabled',true);
-        $('#D'+$(this).attr('id')[1]).val('Cancelar');
+        $('#D'+$(this).attr('id').substring(1)).val('Cancelar');
+        $('#D'+$(this).attr('id').substring(1)).get(0).type = "button";
+        
+        console.log($('.card-footer').html()+"@method('PUT')");
     }
 })
 
@@ -90,13 +94,13 @@ $('.textFieldDisabled').on('keyup',function(){
     for (let index = 0; index < backupInput.length; index++) {
         console.log('('+backupInput[index][0] +' == '+ $(this).attr('name') +' && '+ backupInput[index][1] +' != ' +$(this).val()+') || '+flag);
         if((backupInput[index][0] == $(this).attr('name') && backupInput[index][1] != $(this).val()) || flag){
-            $('.editar').get(0).type = "submit";
-            $('#E'+$(this).attr('id')[1]).prop('disabled',false);
+            $('#E'+$(this).attr('id').substring(1)).get(0).type = "submit";
+            $('#E'+$(this).attr('id').substring(1)).prop('disabled',false);
             break;
         }
         else{
-            $('.editar').get(0).type = "button";
-            $('#E'+$(this).attr('id')[1]).prop('disabled',true);
+            $('#E'+$(this).attr('id').substring(1)).get(0).type = "button";
+            $('#E'+$(this).attr('id').substring(1)).prop('disabled',true);
         }
     }
     
@@ -113,22 +117,22 @@ $('.textFieldDisabled').on('click',function(){
     for (let index = 0; index < backupInput.length; index++) {
         console.log('('+backupInput[index][0] +' == '+ $(this).attr('name') +' && '+ backupInput[index][1] +' != ' +$(this).val()+') || '+flag);
         if((backupInput[index][0] == $(this).attr('name') && backupInput[index][1] != $(this).val()) || flag){
-            $('.editar').get(0).type = "submit";
-            $('#E'+$(this).attr('id')[1]).prop('disabled',false);
+            $('#E'+$(this).attr('id').substring(1)).get(0).type = "submit";
+            $('#E'+$(this).attr('id').substring(1)).prop('disabled',false);
             break;
         }
         else{
-            $('.editar').get(0).type = "button";
-            $('#E'+$(this).attr('id')[1]).prop('disabled',true);
+            $('#E'+$(this).attr('id').substring(1)).get(0).type = "button";
+            $('#E'+$(this).attr('id').substring(1)).prop('disabled',true);
         }
     }
 })
 
 
 $('.eliminar').on('click',function(event){
-    let inputs = document.getElementsByClassName('textFieldDisabled id'+$(this).attr('id')[1]);
-    console.log('textFieldDisabled id'+$(this).attr('id')[1]);
-    if($('#E'+$(this).attr('id')[1]).val()=="Guardar"){
+    let inputs = document.getElementsByClassName('textFieldDisabled id'+$(this).attr('id').substring(1));
+    console.log('textFieldDisabled id'+$(this).attr('id').substring(1));
+    if($('#E'+$(this).attr('id').substring(1)).val()=="Actualizar"){
         for (var i = 0; i < inputs.length; i++) {
             console.log(backupInput);
             if(backupInput[i] != inputs[i].value){
@@ -136,14 +140,35 @@ $('.eliminar').on('click',function(event){
                 inputs[i].value = backupInput[i][1];
             }
             inputs[i].disabled = true;
-            $('#E'+$(this).attr('id')[1]).removeClass('btn-success');
-            $('#E'+$(this).attr('id')[1]).addClass('btn-warning');
+            $('#E'+$(this).attr('id').substring(1)).removeClass('btn-success');
+            $('#E'+$(this).attr('id').substring(1)).addClass('btn-warning');
         }
-        $('#E'+$(this).attr('id')[1]).val('Editar');
+        $('#E'+$(this).attr('id').substring(1)).val('Editar');
         $(this).val('Eliminar');
         backupInput = "";
     }
-    $('#E'+$(this).attr('id')[1]).get(0).type = "button";
-    $('#E'+$(this).attr('id')[1]).prop('disabled',false);
-
+    $('#E'+$(this).attr('id').substring(1)).get(0).type = "button";
+    $('#E'+$(this).attr('id').substring(1)).prop('disabled',false);
+    if($('#D'+$(this).attr('id').substring(1)).get(0).type == "button"){
+        $('#D'+$(this).attr('id').substring(1)).get(0).type = "submit";
+        event.preventDefault();
+    }
+    console.log($('.card-footer').html()+"@method('DELETE')");
 })
+
+$(document).ready(function(){
+    setTimeout(function(){
+        $('.alert').fadeOut(500);
+    },2000);
+})
+
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+    if($(this).text() == "Menu"){
+        $(this).text('X');
+    }else if($(this).text() == "X"){
+        $(this).text('Menu');
+    }
+    
+  });

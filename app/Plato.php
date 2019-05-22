@@ -4,14 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ingrediente extends Model
+class Plato extends Model
 {
-     protected $fillable = ['Nombre','Proveedor'];
-     protected $table  = "ingrediente";
+    protected $fillable = ['Nombre','Valor'];
+     protected $table  = "plato";
      protected $primaryKey = 'Codigo';
 
      public function getRouteKeyName(){
           return 'Codigo';
      }
-
 }
