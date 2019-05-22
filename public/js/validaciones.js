@@ -162,6 +162,17 @@ $(document).ready(function(){
     },2000);
 })
 
+$('.check').on('click',function(event){
+    let cantidad = $('#cant'+$(this).attr('id').substring(2));
+    if($(this).prop('checked')){
+        cantidad.prop('disabled',false);
+        cantidad.val('1');
+    }else{
+        cantidad.prop('disabled',true);
+        cantidad.val('');
+    }
+})
+
 $("#menu-toggle").click(function(e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");

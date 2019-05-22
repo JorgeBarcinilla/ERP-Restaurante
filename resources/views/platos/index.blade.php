@@ -43,9 +43,10 @@ Ingredientes
                         </div>
                         <div class="row justify-content-around">
                                 @foreach ($ingredientes as $ingrediente)
-                                <div class="group col-sm-3">
-                                    <input type="checkbox" name="CodIngrediente" id=""
+                                <div class="group col-xs-6 col-sm-4">
+                                    <input class="check" type="checkbox" name="CodIngrediente{{$ingrediente->Codigo}}" id="ch{{$ingrediente->Codigo}}"
                                         value="{{$ingrediente->Codigo}}"> {{$ingrediente->Nombre}}
+                                    <input class="text-center" type="number" name="cantidad{{$ingrediente->Codigo}}" id="cant{{$ingrediente->Codigo}}" style="width: 40px" min="1" max="50" title="Escriba un valor entre 1-50" required disabled>
                                 </div>
                                 @endforeach
                             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Plato;
 use App\Ingrediente;
+use App\PlatoIngrediente;
 
 class PlatoController extends Controller
 {
@@ -42,7 +43,17 @@ class PlatoController extends Controller
         $plato->Nombre =$request->input('nombre');
         $plato->Valor =$request->input('valor');
         $plato->save();
-        return redirect()->route('platos.index')->with('status','Plato creado correctamente');
+        foreach ($request as $key => $value) {
+            
+            if(strpos($key,'CodIngrediente')){
+                $platoIngrediente = new PlatoIngrediente();
+                $platoIngrediente->CodPlato = $plato->Codigo;
+                $platoIngrediente->CodIngrediente = $request->input($key);
+                $platoIngrediente->Cantidad = $request->input('Cantidad'.$value);
+            }
+        }
+        return $request;
+        //return redirect()->route('platos.index')->with('status','Plato creado correctamente');
     }
 
     /**
