@@ -18,7 +18,9 @@ class PlatoController extends Controller
     {
         $platos = Plato::all();
         $ingredientes = Ingrediente::all();
-        return view('platos.index',compact('platos','ingredientes'));
+        $platoIngredientes = PlatoIngrediente::all();
+        //return $platoIngredientes;
+        return view('platos.index',compact('platos','ingredientes','platoIngredientes'));
     }
 
     /**
@@ -48,7 +50,6 @@ class PlatoController extends Controller
         for ($i=0; $i < count($ing); $i++) { 
             $plato->ingredientes()->attach($ing[$i],['Cantidad'=>$cant[$i]]);
         }
-
         $plato->save();
         foreach ($request as $key => $value) {
             
@@ -103,8 +104,10 @@ class PlatoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Plato $plato)
     {
-        //
+        PlatoIngrediente::where('codPlato',$plato->Codigo)->delete();
+        $plato->delete();
+        return redirect()->route('platos.index')->with('status','Eliminado correctamente');
     }
 }

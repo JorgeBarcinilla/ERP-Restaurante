@@ -16,9 +16,9 @@ class CreatePlatoIngredienteTable extends Migration
         Schema::create('plato_ingrediente', function (Blueprint $table) {
             $table->increments('Id');
             $table->unsignedInteger('CodPlato');
-            $table->foreign('CodPlato','fk_platoingrediente_plato')->references('Codigo')->on('plato')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('CodPlato')->references('Codigo')->on('plato');
             $table->unsignedInteger('CodIngrediente');
-            $table->foreign('CodIngrediente','fk_platoingrediente_ingrediente')->references('Codigo')->on('ingrediente')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('CodIngrediente')->references('Codigo')->on('ingrediente');
             $table->float('Cantidad');
             $table->timestamps();
         });

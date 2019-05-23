@@ -1,7 +1,7 @@
-
-
-$('.form').on('submit',function(event){
-    let inputs = document.querySelector('.textFieldDisabled-js');
+/*$('.btn-submit').on('click',function(event){
+    let inputs = document.querySelectorAll(".textFieldDisabled-js");
+    console.log(inputs);
+    event.preventDefault();
     if(!validar(inputs)){
         event.preventDefault();
     }
@@ -36,7 +36,7 @@ function validar(inputs){
     }
 
     return true;
-}
+}*/
 
 let backupInput ;
 let inputs;

@@ -43,27 +43,32 @@ Ingredientes
                                     <div class="label">Valor</div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="container">
-                            <div class="row justify-content-around">
-                                @foreach ($ingredientes as $ingrediente)
-                                <div class="col-6 col-sm-4 col-xl-3 align-items-center">
-                                    <div class="group-items">
-                                            <input class="check check-crear" type="checkbox" name="CodIngrediente{{$ingrediente->Codigo}}"
-                                            id="ch{{$ingrediente->Codigo}}" value="{{$ingrediente->Codigo}}">
-                                        {{$ingrediente->Nombre}}
-                                        <input class="textFieldDisabled text-center" type="number"
-                                            name="cantidad{{$ingrediente->Codigo}}" id="cant{{$ingrediente->Codigo}}"
-                                            style="width: 40px" min="1" max="50" title="Escriba un valor entre 1-50" required
-                                            disabled>
-                                    </div>
-                                </div>
-                                @endforeach
+                            <div class="row justify-content-center">
+                                Ingredientes
                             </div>
-                            <input id="input-array-ingredientes" type="hidden" name="ingredientes" value="">
+                            <div class="container container-ingredientes">
+                                <div class="row justify-content-around">
+                                    @foreach ($ingredientes as $ingrediente)
+                                    <div class="col-6 col-sm-4 col-xl-3 align-items-center">
+                                        <div class="group-items">
+                                            <input class="check check-crear" type="checkbox"
+                                                name="CodIngrediente{{$ingrediente->Codigo}}"
+                                                id="ch{{$ingrediente->Codigo}}" value="{{$ingrediente->Codigo}}">
+                                            {{$ingrediente->Nombre}}
+                                            <input class="textFieldDisabled text-center" type="number"
+                                                name="cantidad{{$ingrediente->Codigo}}"
+                                                id="cant{{$ingrediente->Codigo}}" style="width: 40px" min="1" max="50"
+                                                title="Escriba un valor entre 1-50" required disabled>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <input id="input-array-ingredientes" type="hidden" name="ingredientes" value="">
+                            </div>
                         </div>
+
                         <div class="card-footer" style="border-radius: 15px">
-                            <input type="submit" class="btn btn-success" id="crear-plato" value="Crear">
+                            <input type="submit" class="btn btn-success btn-submit" id="crear-plato" value="Crear">
                         </div>
                     </form>
                 </div>
@@ -80,21 +85,57 @@ Ingredientes
             @foreach ($platos as $plato)
             <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="card text-center" style="border-radius: 15px; margin-top: 25px">
-                    <form class="form" method="POST" action="/ingredientes/{{$plato->Codigo}}" enctype="multipart/form-data">
+                    <form class="form" method="POST" action="/platos/{{$plato->Codigo}}"
+                        enctype="multipart/form-data">
                         @method('DELETE')
                         @csrf
                         <div class="card-header" style="border-radius: 15px">
-                            <input class="textFieldDisabled textFieldDisabled-js id{{$plato->Codigo}} form-control text-center"
+                            <input
+                                class="textFieldDisabled  id{{$plato->Codigo}} form-control text-center"
                                 id="N{{$plato->Codigo}}" type="text" name="nombre" maxlength="100"
                                 pattern="[A-Za-z]{2,100}" title="Escribe un nombre valido" value="{{$plato->Nombre}}"
                                 required disabled>
                         </div>
-                        <div class="card-body form-group">
-                            <label for="" class="col-form-label">Valor:</label>
-                            <input class="textFieldDisabled textFieldDisabled-js id{{$plato->Codigo}} form-control text-center"
-                                id="P{{$plato->Codigo}}" type="text" name="proveedor" maxlength="100"
-                                pattern="[A-Za-z]{2,100}" title="Escribe un nombre valido" value="{{$plato->Valor}}"
-                                required disabled>
+                        <div class="container">
+                            <div class="row justify-content-around">
+                                <label for="" class="col-10">Valor:</label>
+                                <input
+                                    class="textFieldDisabled  id{{$plato->Codigo}} form-control text-center col-10"
+                                    id="P{{$plato->Codigo}}" type="text" name="proveedor" maxlength="100"
+                                    pattern="[A-Za-z]{2,100}" title="Escribe un nombre valido" value="{{$plato->Valor}}"
+                                    required disabled>
+                            </div>
+                            <div class="row justify-content-center">
+                                Ingredientes
+                            </div>
+                            <div class="container container-ingredientes">
+                                <div class="row justify-content-around">
+                                    @foreach ($platoIngredientes as $platoIngrediente)
+                                    @if ($plato->Codigo == $platoIngrediente->CodPlato)
+                                    <div class="col-12 align-items-center">
+                                        <div class="group-items">
+
+                                            @foreach ($ingredientes as $ingrediente)
+                                            @if ($ingrediente->Codigo == $platoIngrediente->CodIngrediente)
+                                            <input class="check check-crear" type="checkbox"
+                                                name="CodIngrediente{{$platoIngrediente->Id}}"
+                                                id="ch{{$platoIngrediente->Id}}" value="{{$platoIngrediente->Id}}"
+                                                checked disabled>
+                                            {{$ingrediente->Nombre}}
+                                            <input class="textFieldDisabled text-center" type="number"
+                                                name="cantidad{{$platoIngrediente->Id}}"
+                                                id="cant{{$platoIngrediente->Id}}" style="width: 40px" min="1" max="50"
+                                                title="Escriba un valor entre 1-50" value="{{$platoIngrediente->Cantidad}}" required disabled>
+                                            @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @endif
+
+                                    @endforeach
+                                </div>
+                                <input id="input-array-ingredientes" type="hidden" name="ingredientes" value="">
+                            </div>
                         </div>
                         <div class="card-footer" style="border-radius: 15px">
                             <input type="button" id="E{{$plato->Codigo}}" class="btn btn-warning editar" value="Editar">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ingrediente;
+use App\PlatoIngrediente;
 
 class IngredienteController extends Controller
 {
@@ -13,10 +14,10 @@ class IngredienteController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth');
-    }
+    }*/
 
     /**
      * Display a listing of the resource.
@@ -99,6 +100,7 @@ class IngredienteController extends Controller
      */
     public function destroy(Ingrediente $ingrediente)
     {
+        PlatoIngrediente::where('codIngrediente',$ingrediente->Codigo)->delete();
         $ingrediente->delete();
         return redirect()->route('ingredientes.index')->with('status','Eliminado correctamente');
     }

@@ -63,14 +63,14 @@ Ingredientes
                         @method('DELETE')
                         @csrf
                         <div class="card-header" style="border-radius: 15px">
-                            <input class="textFieldDisabled textFieldDisabled-js id{{$ingrediente->Codigo}} form-control text-center"
+                            <input class="textFieldDisabled id{{$ingrediente->Codigo}} form-control text-center"
                                 id="N{{$ingrediente->Codigo}}" type="text" name="nombre" maxlength="100"
                                 pattern="[A-Za-z]{2,100}" title="Escribe un nombre valido"
                                 value="{{$ingrediente->Nombre}}" required disabled>
                         </div>
                         <div class="card-body form-group">
                             <label for="" class="col-form-label">Proveedor:</label>
-                            <input class="textFieldDisabled textFieldDisabled-js id{{$ingrediente->Codigo}} form-control text-center"
+                            <input class="textFieldDisabled id{{$ingrediente->Codigo}} form-control text-center"
                                 id="P{{$ingrediente->Codigo}}" type="text" name="proveedor" maxlength="100"
                                 pattern="[A-Za-z]{2,100}" title="Escribe un nombre valido"
                                 value="{{$ingrediente->Proveedor}}" required disabled>
