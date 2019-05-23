@@ -78,7 +78,7 @@ $('.editar').on('click',function(event){
         $(this).prop('disabled',true);
         $('#D'+$(this).attr('id').substring(1)).val('Cancelar');
         $('#D'+$(this).attr('id').substring(1)).get(0).type = "button";
-        
+        document.getElementsByName('_method')[0].value = 'PUT';
         console.log($('.card-footer').html()+"@method('PUT')");
     }
 })
@@ -153,6 +153,7 @@ $('.eliminar').on('click',function(event){
         $('#D'+$(this).attr('id').substring(1)).get(0).type = "submit";
         event.preventDefault();
     }
+    document.getElementsByName('_method')[0].value = 'DELETE';
     console.log($('.card-footer').html()+"@method('DELETE')");
 })
 

@@ -42,6 +42,7 @@ class PlatoController extends Controller
         $plato = new Plato();
         $plato->Nombre =$request->input('nombre');
         $plato->Valor =$request->input('valor');
+        //$plato->ingredientes()->attach([1, 2, 3]);
         $plato->save();
         foreach ($request as $key => $value) {
             

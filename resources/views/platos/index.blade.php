@@ -3,7 +3,7 @@
 Ingredientes
 @endsection
 @section('sidebar')
-<button class="btn btn-menu" id="menu-toggle">X</button>
+<button class="btn btn-lite" id="menu-toggle">X</button>
 @endsection
 @section('content')
 <div class="d-flex" id="wrapper">
@@ -69,7 +69,7 @@ Ingredientes
             <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="card text-center" style="border-radius: 15px; margin-top: 25px">
                     <form method="POST" action="/ingredientes/{{$plato->Codigo}}" enctype="multipart/form-data">
-                        @method('PUT')
+                        @method('DELETE')
                         @csrf
                         <div class="card-header" style="border-radius: 15px">
                             <input class="textFieldDisabled id{{$plato->Codigo}} form-control text-center"
