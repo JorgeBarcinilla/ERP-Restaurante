@@ -13,4 +13,8 @@ class Plato extends Model
      public function getRouteKeyName(){
           return 'Codigo';
      }
+
+     public function ingredientes(){
+          return $this->belongsToMany(Ingrediente::class, 'plato_ingrediente', 'CodPlato', 'CodIngrediente');
+     }
 }

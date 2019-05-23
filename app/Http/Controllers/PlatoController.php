@@ -39,10 +39,16 @@ class PlatoController extends Controller
      */
     public function store(Request $request)
     {
+        $ing = explode(",", explode("-",$request->input('ingredientes'))[0]);
+        $cant = explode(",", explode("-",$request->input('ingredientes'))[1]);
         $plato = new Plato();
         $plato->Nombre =$request->input('nombre');
         $plato->Valor =$request->input('valor');
-        //$plato->ingredientes()->attach([1, 2, 3]);
+        $plato->save();
+        for ($i=0; $i < count($ing); $i++) { 
+            $plato->ingredientes()->attach($ing[$i],['Cantidad'=>$cant[$i]]);
+        }
+
         $plato->save();
         foreach ($request as $key => $value) {
             
@@ -53,8 +59,8 @@ class PlatoController extends Controller
                 $platoIngrediente->Cantidad = $request->input('Cantidad'.$value);
             }
         }
-        return $request;
-        //return redirect()->route('platos.index')->with('status','Plato creado correctamente');
+        //return $request;
+        return redirect()->route('platos.index')->with('status','Plato creado correctamente');
     }
 
     /**

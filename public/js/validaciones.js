@@ -1,31 +1,11 @@
-$('#form-1').on('submit',function(event){
-    let inputs = document.querySelector('.textField');
-    if(validar(inputs)){
 
-        $.ajax({
-            url: 'insertar.php',
-            method: 'POST',
-            data: $('#form-1').serialize(),
-        })
-        .done(function(respuesta){
-            
-            if(respuesta == "false"){
-                alert("El campo debe cumplir con un formato valido");
-            }else if(respuesta.includes("Duplicate entry")){
-                alert("El codigo fue registrado anteriormente");
-            }else{
-                for (var i = 0; i < inputs.form.length-1; i++) {
-                    inputs.form[i].value = '';
-                }
-            }
-            
-        })
-        .fail(function(resp){
-            alert('Hubo un problema al intentar enviar la informacion');
-        })
-        
+
+$('.form').on('submit',function(event){
+    let inputs = document.querySelector('.textFieldDisabled-js');
+    if(!validar(inputs)){
+        event.preventDefault();
     }
-    event.preventDefault();
+    
 });
 
 function validar(inputs){
@@ -57,7 +37,6 @@ function validar(inputs){
 
     return true;
 }
-
 
 let backupInput ;
 let inputs;
@@ -106,7 +85,7 @@ $('.textFieldDisabled').on('keyup',function(){
     
 })
 
-$('.textFieldDisabled').on('click',function(){
+$('.textFieldDisabled-js').on('click',function(){
     let flag = false;
     for (let index = 0; index < inputs.length; index++) {
         if(inputs[index].value != backupInput[index][1]){
@@ -172,6 +151,23 @@ $('.check').on('click',function(event){
         cantidad.prop('disabled',true);
         cantidad.val('');
     }
+})
+
+let ingredientes = new Array();
+let cantidades = new Array();
+$('#crear-plato').on('click',function(event){
+    let checks = document.querySelector('.check-crear');
+    for (var i = 0; i < checks.form.length; i++) {
+        if($(checks.form[i]).prop('checked')){
+            ingredientes.push(checks.form[i].value);
+            cantidades.push($('#cant'+checks.form[i].value).val());
+        }
+    }
+    if(ingredientes.length < 1){
+        event.preventDefault();
+        alert('El plato debe tener minimo un ingrediente');
+    }
+    $('#input-array-ingredientes').val(ingredientes+"-"+cantidades);
 })
 
 $("#menu-toggle").click(function(e) {

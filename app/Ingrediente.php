@@ -14,4 +14,7 @@ class Ingrediente extends Model
           return 'Codigo';
      }
 
+     public function platos(){
+          return $this->belongsToMany(Plato::class, 'plato_ingrediente', 'CodIngrediente', 'CodPlato')->withPivot('Cantidad');
+     }
 }

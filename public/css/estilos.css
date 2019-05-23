@@ -20,6 +20,8 @@
     background: transparent;
     border: 1px solid;
     border-color: #999;
+    border-radius: 5px;
+    outline: none;
 }
 
 .form-margin {
@@ -34,6 +36,15 @@
     border-color: red !important;
 }
 
+.btn-sidebar, .btn-sidebar:focus{
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  outline: 0 none;
+  box-shadow: 3px 0px 5px -1px rgba(0, 0, 0, 0.1);
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
 
 /* INPUT ESTILO GOOGLE */
 
@@ -59,6 +70,15 @@
     position: relative;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.group-items{
+    position: relative;
+    width: auto;
+    border: 1px solid #999; border-radius: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .textField {
@@ -91,6 +111,10 @@
     -moz-transition: 0.5s ease all;
     -webkit-transition: 0.5s  ease all;
     
+}
+
+.card-footer .btn{
+  margin-bottom: 5px;
 }
 
 body {
@@ -127,14 +151,7 @@ body {
       margin-top:-20px;
   }
 
-  .btn-menu{
-      background-color: transparent;
-      color: black;
-      border: 1px solid black;
-      outline: none;
-  }
-  
-  @media (min-width: 768px) {
+  @media (min-width: 460px) {
     #sidebar-wrapper {
       margin-left: 0;
     }
@@ -148,4 +165,6 @@ body {
       margin-left: -8rem;
     }
   }
+
+  
   
