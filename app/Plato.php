@@ -17,4 +17,8 @@ class Plato extends Model
      public function ingredientes(){
           return $this->belongsToMany(Ingrediente::class, 'plato_ingrediente', 'CodPlato', 'CodIngrediente');
      }
+
+     public function ordenes(){
+          return $this->belongsToMany(Orden::class, 'orden_plato', 'CodPlato', 'NumOrden');
+     }
 }

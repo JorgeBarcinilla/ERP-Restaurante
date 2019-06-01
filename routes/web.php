@@ -18,7 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/ordenes/buscar', 'OrdenController@buscarOrden')->name('ordenes.buscar');
+Route::get('/ordenes/cerrar', 'OrdenController@cerrarOrden')->name('ordenes.cerrar');
+Route::post('/ordenes/cerrar', 'OrdenController@updateEstado')->name('ordenes.updateEstado');
+Route::get('/ventas/buscar', 'VentaController@buscarVenta')->name('ventas.buscar');
 
 Route::resource('ingredientes', 'IngredienteController');
 Route::resource('platos', 'PlatoController');
+Route::resource('ordenes', 'OrdenController');
+Route::resource('ventas', 'VentaController');
 

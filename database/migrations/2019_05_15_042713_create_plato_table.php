@@ -16,7 +16,7 @@ class CreatePlatoTable extends Migration
         Schema::create('plato', function (Blueprint $table) {
             $table->increments('Codigo');
             $table->char('Nombre',50);
-            $table->float('Valor');
+            $table->double('Valor');
             $table->timestamps();
         });
     }

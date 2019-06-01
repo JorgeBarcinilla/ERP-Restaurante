@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Ingrediente;
-use App\PlatoIngrediente;
+use App\Orden;
+use App\OrdenPlato;
 
-class IngredienteController extends Controller
+class VentaController extends Controller
 {
 
-    /**
+     /**
      * Create a new controller instance.
      *
      * @return void
@@ -26,8 +26,7 @@ class IngredienteController extends Controller
      */
     public function index()
     {
-        $ingredientes = Ingrediente::all();
-        return view('ingredientes.index',compact('ingredientes'));
+        return view('ventas.index');
     }
 
     /**
@@ -37,7 +36,7 @@ class IngredienteController extends Controller
      */
     public function create()
     {
-        return view('ingredientes.create');
+        //
     }
 
     /**
@@ -48,11 +47,7 @@ class IngredienteController extends Controller
      */
     public function store(Request $request)
     {
-        $ingrediente = new Ingrediente();
-        $ingrediente->Nombre =$request->input('nombre');
-        $ingrediente->Proveedor =$request->input('proveedor');
-        $ingrediente->save();
-        return redirect()->route('ingredientes.index')->with('status','Agregado correctamente');
+        //
     }
 
     /**
@@ -61,9 +56,9 @@ class IngredienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($Codigo)
+    public function show($id)
     {
-        //$ingrediente = Ingrediente::where('Codigo','=',$Codigo)->firstOrFail();
+        //
     }
 
     /**
@@ -72,8 +67,9 @@ class IngredienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ingrediente $ingrediente)
+    public function edit($id)
     {
+        //
     }
 
     /**
@@ -83,13 +79,9 @@ class IngredienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ingrediente $ingrediente)
+    public function update(Request $request, $id)
     {
-        $ingrediente->Nombre =$request->input('nombre');
-        $ingrediente->Proveedor =$request->input('proveedor');
-        $ingrediente->save();
-        //return $request;
-        return redirect()->route('ingredientes.index')->with('status','Ingrediente actualizado correctamente'); 
+        //
     }
 
     /**
@@ -98,10 +90,37 @@ class IngredienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ingrediente $ingrediente)
+    public function destroy($id)
     {
-        PlatoIngrediente::where('codIngrediente',$ingrediente->Codigo)->delete();
-        $ingrediente->delete();
-        return redirect()->route('ingredientes.index')->with('status','Eliminado correctamente');
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function buscarVenta(Request $request)
+    {
+        $ordenes = Orden::where('Fecha',$request->input('fecha'))->where('Estado','C')->get();
+        if (count($ordenes) < 1) {
+            return redirect()->route('ventas.index')->with('statusFailed','Para el dia seleccionado no se registraron ventas');
+        }else{
+            $totalVenta = 0;
+            $valores = [];
+            foreach ($ordenes as $orden) {
+                $total = 0;
+                $platosOrden = OrdenPlato::where('NumOrden',$orden->Numero)->get();
+                foreach ($platosOrden as $platoOrden) {
+                    $total += $platoOrden->Valor;
+                }
+                array_push($valores,$total);
+                $totalVenta += $total;
+            }
+
+            return view('ventas.buscar',compact('ordenes','valores','totalVenta'));
+        }
+        
     }
 }

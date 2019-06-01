@@ -1,6 +1,69 @@
+header#welcome {
+  margin-top: -20px;
+  text-align: center;
+  color: dimgray;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+}
+
+header#welcome .text {
+  margin-top: -100px;
+  padding-top: 150px;
+  padding-bottom: 100px;
+}
+
+header#welcome .text .intro-heading {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 50px;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+#intro-welcome {
+  color: dimgray;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 50px;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+
+  header#welcome .text {
+      padding-top: 300px;
+      padding-bottom: 250px;
+  }
+
+  header#welcome .text .intro-heading {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 50px;
+      margin-bottom: 50px;
+      margin-left: 80px;
+      margin-right: 80px;
+
+  }
+}
+
+.btn-xl {
+  font-size: 18px;
+  padding: 15px 50px;
+}
 
 #sec-1 {
     background-color: #e9e9e9;
+}
+
+.contenedor{
+  background-color: white;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 5px 5px 5px -1px rgba(0, 0, 0, 0.1);
 }
 
 .formulario hr {
@@ -12,11 +75,12 @@
     margin-bottom: 30px;
 }
 
-.textFieldDisabled, .textFieldDisabled:disabled {
+.textFieldDisabled, .textFieldDisabled:disabled, .textFieldDisabled-cantOrden, .textFieldDisabled-cantOrden:disabled {
     background: transparent;
     border: none ;
 }
-.textFieldDisabled:enabled {
+
+.textFieldDisabled:enabled, .textFieldDisabled-cantOrden:enabled{
     background: transparent;
     border: 1px solid;
     border-color: #999;
@@ -44,6 +108,7 @@
   box-shadow: 3px 0px 5px -1px rgba(0, 0, 0, 0.1);
   writing-mode: vertical-rl;
   text-orientation: upright;
+  font-weight: bold;
 }
 
 /* INPUT ESTILO GOOGLE */
@@ -64,6 +129,12 @@
     -webkit-transition: 0.2s ease all;
     background-color: white;
     display: flex;
+}
+
+.label-mesa {
+  
+  width: auto;
+  
 }
 
 .group {
@@ -98,9 +169,10 @@
 .textField:focus~.label,
 .textField:valid~.label {
     top: -10px;
-    font-size: 15px;
+    font-size: 13px;
     color: rgb(15, 54, 212);
     padding-right: 3px;
+    padding-bottom: -5px;
     width: auto;
 }
 
@@ -120,13 +192,31 @@
 }
 
 .container-ingredientes{
-  height: 100px;
-  max-height: 100%; 
+  height: auto;
+  max-height: 120px; 
   overflow-y: auto;
   border-radius: 5px;
   border: 1px solid #999;
   margin-bottom: 5px;
 
+}
+
+.container-platos{
+  height: auto;
+  max-height: 460px; 
+  overflow-y: auto;
+  border-radius: 5px;
+  border: 1px solid #999;
+  margin-bottom: 5px;
+
+}
+
+.plato-orden-select{
+  border: 2px double limegreen;
+}
+
+.plato-orden-mouseover{
+  border: 2px double rgb(129, 248, 129);
 }
 
 body {

@@ -68,15 +68,16 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     <a href="{{ route('login') }}">Ingresar</a>
+                    <a href="{{ route('register') }}">Registrarse</a>
                 </div>
             @endif
 
             <div class="content">
                     <div class="title m-b-md">
-                            Restaurante
+                            ADMIN-RESTAURANT
                         </div>
-                <div class="title m-b-md">
-                    Jorge Luis
+                        <div class="links">
+                    Jorge Luis Palacio Barcinilla
                 </div>
             </div>
         </div>

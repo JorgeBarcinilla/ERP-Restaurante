@@ -15,7 +15,7 @@ class CreateOrdenTable extends Migration
     {
         Schema::create('orden', function (Blueprint $table) {
             $table->increments('Numero');
-            $table->date('fecha');
+            $table->date('Fecha');
             $table->integer('NumMesa');
             $table->char('Estado',1);
             $table->timestamps();
